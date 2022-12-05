@@ -48,5 +48,8 @@ P = x + y*z
 integratePolynomialOnSimplex(P, S)
 ```
 
+Be careful if your polynomial does not involve one of the variables. 
+For example if $P(x, y, z) = x + y$, you have to encode as a polynomial 
+dependening on `z`: type `P = x + y + 0*z`.
 
 
