@@ -4,6 +4,12 @@
 [![Coverage](https://codecov.io/gh/stla/SimplicialCubature.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/stla/SimplicialCubature.jl)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://stla.github.io/SimplicialCubature.jl/dev)
 
+This package is a port of the R package **SimplicalCubature**, 
+written by John P. Nolan, and which contains R translations of 
+some Matlab and Fortran code written by Alan Genz.
+
+___
+
 A simplex is a triangle in dimension 2, a tetrahedron in dimension 3. 
 This package provides two main functions: `integrateOnSimplex`, to integrate 
 an arbitrary function on a simplex, and `integratePolynomialOnSimplex`, to 
@@ -53,3 +59,12 @@ For example if $P(x, y, z) = x + y$, you have to encode as a polynomial
 dependening on `z`: type `P = x + y + 0*z`.
 
 
+## References
+
+- A. Genz and R. Cools. 
+*An adaptive numerical cubature algorithm for simplices.* 
+ACM Trans. Math. Software 29, 297-308 (2003).
+
+- Jean B. Lasserre.
+*Simple formula for the integration of polynomials on a simplex.* 
+BIT Numerical Mathematics 61, 523-533 (2021).
