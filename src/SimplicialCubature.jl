@@ -736,7 +736,7 @@ function integratePolynomialOnSimplex(P, S)
     end
     Q = P(gens => v + B * vec(gens))
     s = 0.0
-    for t in terms(Q)
+    for t in TypedPolynomials.terms(Q)
         coef = TypedPolynomials.coefficient(t)
         powers = TypedPolynomials.exponents(t)
         j = sum(powers)

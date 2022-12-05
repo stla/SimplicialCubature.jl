@@ -1,6 +1,6 @@
 name = "SimplicialCubature"
 uuid = "552d7cc9-94b7-4d62-a95c-872e87830e46"
-authors = ["Stéphane Laurent <laurent_step@yahoo.fr> and contributors"]
+authors = ["Stéphane Laurent <laurent_step@outlook.fr>"]
 version = "0.1.0"
 
 [deps]
