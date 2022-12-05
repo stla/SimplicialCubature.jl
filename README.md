@@ -21,9 +21,7 @@ S = [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]]
 Or you can get it by running `CanonicalSimplex(3)`.
 
 Suppose you want to integrate the function 
-$$
-f(x, y ,z) = x + yz
-$$
+$$f(x, y ,z) = x + yz$$
 on the unit simplex. To use `integrateOnSimplex`, you have to define $f$ 
 as a function of a 3-dimensional vector:
 
