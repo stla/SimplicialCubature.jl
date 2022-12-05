@@ -2,8 +2,10 @@ module SimplicialCubature
 
 export CanonicalSimplex
 export integrateOnSimplex
+export integratePolynomialOnSimplex
 
 import LinearAlgebra
+import TypedPolynomials
 
 function SimplexVolume(S)
   n, _ = size(S)
@@ -705,6 +707,47 @@ function SMPRMS(N, KEY)
     W[:, K] = W[:, K] * sqrt(NB / sum(PTS .* W[:, K] .* W[:, K]))
   end
   return (G = G, W = W, PTS = PTS)
+end
+
+"""
+    integratePolynomialOnSimplex(P, S)
+
+Exact integral of a polynomial over a simplex.
+
+# Argument
+- `P`: polynomial
+- `S`: simplex, given by a vector of n+1 vectors of dimension n, the simplex vertices 
+"""
+function integratePolynomialOnSimplex(P, S)
+    gens = TypedPolynomials.variables(P)
+    n = length(gens)
+    if length(S) != n + 1
+        error("Invalid simplex.")
+    end
+    for i in 1:(n+1)
+        if length(S[i]) != n
+            error("Invalid simplex.")
+        end
+    end
+    v = S[n+1]    
+    B = Array{Float64}(undef, n, 0)
+    for i in 1:n
+        B = hcat(B, S[i] - v)
+    end
+    Q = P(gens => v + B * vec(gens))
+    s = 0.0
+    for t in terms(Q)
+        coef = TypedPolynomials.coefficient(t)
+        powers = TypedPolynomials.exponents(t)
+        j = sum(powers)
+        if j == 0
+            s = s + coef
+            continue
+        end
+        coef = coef * prod(factorial.(powers))
+        s = s + coef / prod((n+1):(n+j))
+    end
+    return abs(LinearAlgebra.det(B)) / factorial(n) * s
 end
 
 
