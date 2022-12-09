@@ -69,7 +69,7 @@ function integrateOnSimplex(
   m = length(S[1])
   n = length(S[1][1])
   if m != n + 1
-    error("Invalid simplex")
+    error("Invalid simplex.")
   end
   Simplices = Vector{Array{Float64, 2}}(undef, nS)
   for i in 1:nS
@@ -84,8 +84,11 @@ function integrateOnSimplex(
     end
     Simplices[i] = vectorOfVectorsToMatrix(convert(Vector{Vector{Float64}}, Si))
   end
-  function fNew(x)
-    return [f(x; fkwargs...)]
+  local fNew
+  if dim == 1
+    fNew = x -> [f(x; fkwargs...)]
+  else
+    fNew = x -> f(x; fkwargs...)
   end
   a = adsimp(n, Simplices, dim, fNew, maxEvals, absError, tol, rule, info)
   local result
