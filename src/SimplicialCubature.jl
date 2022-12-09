@@ -355,7 +355,7 @@ function SMPDFS(ND, NF, F, TOP, SBS, VRTS)
       end
     end
   end
-  VV = fill(V, NEW - 1)
+  VV = map(copy, fill(V, NEW - 1))
   VRTS = vcat(VRTS, VV)
   VTI = V[:, IS]
   VTJ = V[:, JS]
