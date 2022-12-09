@@ -225,8 +225,8 @@ function SMPSAD(ND, NF, F, MXFS, EA, ER, KEY, RCLS, SBS, VRTS, partitionInfo)
     AE = AE + AES[:, K]
     NV = NV + RCLS
   end
-  FL = convert(Int64, maximum(AE .> maximum([EA, (ER .* abs.(VL))...])))
-  while ((FL > 0) && (NV + DFCOST + 4 * RCLS <= MXFS))
+  FL = any(AE .> maximum([EA, (ER .* abs.(VL))...]))
+  while (FL && (NV + DFCOST + 4 * RCLS <= MXFS))
     ID = argmax(map(maximum, eachcol(AES)))
     VL = VL - VLS[:, ID]
     AE = AE - AES[:, ID]
@@ -246,7 +246,7 @@ function SMPSAD(ND, NF, F, MXFS, EA, ER, KEY, RCLS, SBS, VRTS, partitionInfo)
     end
     NV = NV + DFCOST
     SBS = SBS + NEW - 1
-    FL = convert(Int64, maximum(AE .> maximum([EA, (ER .* abs.(VL))...])))
+    FL = any(AE .> maximum([EA, (ER .* abs.(VL))...]))
   end
   if SBS > 1
     VL = map(sum, eachrow(VLS))
