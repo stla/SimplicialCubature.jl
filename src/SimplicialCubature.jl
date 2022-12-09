@@ -144,7 +144,7 @@ function adsimp(ND, VRTS, NF, F, MXFS, EA, ER, KEY, partitionInfo)
       VL = fill(NaN, NF),
       AE = fill(Inf, NF),
       NV = 0,
-      FL = b.VL,
+      FL = b.FL,
       VLS = NaN,
       AES = NaN,
       VOL = NaN,
