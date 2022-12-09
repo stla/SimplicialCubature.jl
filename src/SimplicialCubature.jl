@@ -213,8 +213,8 @@ function SMPSAD(ND, NF, F, MXFS, EA, ER, KEY, RCLS, SBS, VRTS, partitionInfo)
   AE = VL
   a = SMPRMS(ND, KEY)
   FCT = factorial(ND)
-  VLS = fill(0.0, NF, SBS) # VLS[i,j] = estimated integral of F[i] on simplex VRTS[,,j]
-  AES = fill(0.0, NF, SBS) # AES[i,j] = estimated abs. err. in integral of F[i] on simplex VRTS[,,j]
+  VLS = fill(0.0, NF, SBS) # VLS[i,j] = estimated integral of F[i] on simplex VRTS[j]
+  AES = fill(0.0, NF, SBS) # AES[i,j] = estimated abs. err. in integral of F[i] on simplex VRTS[j]
   VOL = fill(0.0, SBS)
   for K = 1:SBS
     VOL[K] =
@@ -453,7 +453,7 @@ function SMPSMS(N, VERTEX, NF, F, G)
       GI = G[I]
       if G[I-1] > GI
         IX = I - 1
-        for L = 1:div(IX + 1, 2) # !!!!!!!!!!
+        for L = 1:div(I, 2) # !!!!!!!!!!
           GL = G[L]
           if GL <= GI
             IX = IX - 1
