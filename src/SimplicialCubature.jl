@@ -91,7 +91,7 @@ function integrateOnSimplex(
     fNew = x -> f(x; fkwargs...)
   end
   a = adsimp(n, Simplices, dim, fNew, maxEvals, absError, tol, rule, info)
-  rcode = a.Fl
+  rcode = a.FL
   message = adsimp_message(rcode)
   local result
   if info
