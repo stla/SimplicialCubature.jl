@@ -91,6 +91,8 @@ function integrateOnSimplex(
     fNew = x -> f(x; fkwargs...)
   end
   a = adsimp(n, Simplices, dim, fNew, maxEvals, absError, tol, rule, info)
+  rcode = a.Fl
+  message = adsimp_message(rcode)
   local result
   if info
     result = (
@@ -102,7 +104,7 @@ function integrateOnSimplex(
       subsimplicesIntegral = a.VLS,
       subsimplicesAbsError = a.AES,
       subsimplicesVolume = a.VOL,
-      message = adsimp_message(a.FL),
+      message = message,
     )
   else
     result = (
@@ -110,8 +112,14 @@ function integrateOnSimplex(
       estAbsError = a.AE,
       functionEvaluations = a.NV,
       returnCode = a.FL,
-      message = adsimp_message(a.FL),
+      message = message,
     )
+  end
+  message = message * "\n"
+  if rcode == 0
+    printstyled(message, color = :green)
+  else
+    printstyled(message, color = :red)
   end
   return result
 end
