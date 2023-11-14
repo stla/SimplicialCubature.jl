@@ -9,10 +9,22 @@ using TypedPolynomials
     @polyvar x y z
     P = x^3 + x*y*z
     S = CanonicalSimplex(3)
-    I_f = integrateOnSimplex(f, S)
+    I_f1 = integrateOnSimplex(f, S; rule = 1)
+    I_f2 = integrateOnSimplex(f, S; rule = 2)
+    I_f3 = integrateOnSimplex(f, S; rule = 3)
+    I_f4 = integrateOnSimplex(f, S; rule = 4)
     I_P = integratePolynomialOnSimplex(P, S)
     @test isapprox(
-        I_f.integral, I_P
+        I_f1.integral, I_P
+    )
+    @test isapprox(
+        I_f2.integral, I_P
+    )
+    @test isapprox(
+        I_f3.integral, I_P
+    )
+    @test isapprox(
+        I_f4.integral, I_P
     )
 end
 
