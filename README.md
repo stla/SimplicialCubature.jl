@@ -59,6 +59,19 @@ Be careful if your polynomial does not involve one of the variables.
 For example if $P(x, y, z) = x + y$, you have to encode as a polynomial 
 depending on `z`: type `P = x + y + 0*z`.
 
+In addition, on this example where the vertex coordinates of `S` and the 
+coefficients of `P` are integer numbers, there is a more clever way to 
+proceed: while `integratePolynomialOnSimplex` implements an exact proedure, 
+it is not free on (small) numerical errors, but the returned value in this 
+situation will be really exact if you use a polynomial with *rational* 
+coefficients:
+
+```julia
+@polyvar x y z
+P = 1//1*x + y*z
+integratePolynomialOnSimplex(P, S)
+```
+
 
 ## References
 

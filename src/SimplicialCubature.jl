@@ -9,7 +9,7 @@ import TypedPolynomials
 
 function SimplexVolume(S)
   n, _ = size(S)
-  v = S[:,n+1]
+  v = S[:, n+1]
   V = Array{Float64}(undef, n, 0)
   for i = 1:n
     V = hcat(V, S[:,i] - v)
@@ -30,8 +30,8 @@ Canonical n-dimensional simplex.
 - `n`: positive integer
 """
 function CanonicalSimplex(n)
-  S = hcat(fill(0.0, n, 1), LinearAlgebra.diagm(fill(1.0, n)))
-  return map(i -> S[:,i], 1:(n+1))
+  S = hcat(fill(0, n, 1), LinearAlgebra.diagm(fill(1, n)))
+  return map(i -> S[:, i], 1:(n+1))
 end
 
 """
@@ -740,13 +740,14 @@ function integratePolynomialOnSimplex(P, S)
             error("Invalid simplex.")
         end
     end
-    v = S[n+1]    
-    B = Array{Float64}(undef, n, 0)
+    v = S[n+1] 
+    T = promote_type(eltype(eltype(S)), Rational{Int64})
+    B = Array{T}(undef, n, 0)
     for i in 1:n
         B = hcat(B, S[i] - v)
     end
     Q = P(gens => v + B * vec(gens))
-    s = 0.0
+    s = 0
     for t in TypedPolynomials.terms(Q)
         coef = TypedPolynomials.coefficient(t)
         powers = TypedPolynomials.exponents(t)
