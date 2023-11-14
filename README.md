@@ -1,10 +1,11 @@
 # SimplicialCubature
 
 [![Build Status](https://github.com/stla/SimplicialCubature.jl/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/stla/SimplicialCubature.jl/actions/workflows/test.yml?query=branch%3Amain)
-[![Coverage](https://codecov.io/gh/stla/SimplicialCubature.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/stla/SimplicialCubature.jl)
+[![Coverage](https://codecov.io/gh/stla/SimplicialCubature.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/stla/SimplicialCubature.jl)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://stla.github.io/SimplicialCubature.jl/stable)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://stla.github.io/SimplicialCubature.jl/dev)
 
-This package is a port of the R package **SimplicalCubature**, 
+This package is a port of the R package **SimplicialCubature**, 
 written by John P. Nolan, and which contains R translations of 
 some Matlab and Fortran code written by Alan Genz.
 

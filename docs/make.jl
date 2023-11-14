@@ -1,11 +1,8 @@
-import Pkg
-Pkg.add("Documenter")
-
 push!(LOAD_PATH, "../src/")
 
 using Documenter, SimplicialCubature
 
-makedocs(sitename = "SimplicialCubature.jl")
+makedocs(sitename = "SimplicialCubature.jl", modules = [SimplicialCubature])
 
 deploydocs(
     repo = "github.com/stla/SimplicialCubature.jl.git"
