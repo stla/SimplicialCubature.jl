@@ -61,7 +61,7 @@ depending on `z`: type `P = x + y + 0*z`.
 
 In addition, on this example where the vertex coordinates of `S` and the 
 coefficients of `P` are integer numbers, there is a more clever way to 
-proceed: while `integratePolynomialOnSimplex` implements an exact proedure, 
+proceed: while `integratePolynomialOnSimplex` implements an exact procedure, 
 it is not free of (small) numerical errors, but the returned value in this 
 situation will be really exact if you use a polynomial with *rational* 
 coefficients:
